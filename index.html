@@ -10,15 +10,48 @@
     <link type="text/css" rel="stylesheet" href="styles/body.css">
     <link type="text/css" rel="stylesheet" href="styles/nav.css">
     <link type="text/css" rel="stylesheet" href="styles/main.css">
+    <link type="text/css" rel="stylesheet" href="styles/year-selector.css">
+    <link type="text/css" rel="stylesheet" href="styles/months-list.css">
+    <link type="text/css" rel="stylesheet" href="styles/calendar.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body>
-    <nav></nav>
     <main>
-        <section id="months-selector"></section>
-        <section id="calendar"></section>
-        <section id="events"></section>
+        <section id="months-selector" class="gray-bc">
+            <div id="year-selector" class="orange-bc">
+                <div class="arrow-container">
+                    <div><img src="./nextButtonLeft.png"></div>
+                </div>
+                <div id="year"><p class="font-gray">2020</p></div>
+                <div class="arrow-container">
+                    <div><img src="./nextButtonRight.png"></div>
+                </div>
+            </div>
+            <div id="months-list-container">
+                <ul class="font-orange">
+                    <li>January</li>
+                    <li>February</li>
+                    <li>March</li>
+                    <li>April</li>
+                    <li>May</li>
+                    <li>June</li>
+                    <li>July</li>
+                    <li>August</li>
+                    <li>Septmber</li>
+                    <li>October</li>
+                    <li>November</li>
+                    <li>December</li>
+                </ul>
+            </div>
+        </section>
+        <section id="calendar">
+            <div id="days-header"></div>
+            <div id="days-container"></div>
+        </section>
+        <section id="events" class="gray-bc"></section>
     </main>
 </body>
+<script src="./script/script.js"></script>
 
 </html>

@@ -1,0 +1,23 @@
+#months-list-container {
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+}
+
+#months-list-container ul {
+    margin: 10px 50px;
+}
+
+#months-list-container li {
+    border: solid rgb(211, 137, 72);
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px 1px rgba(38, 41, 46, 0.74);
+}
+
+#months-list-container li:hover {
+    background-color: rgb(211, 137, 72);
+    color: rgb(75, 77, 88);
+}

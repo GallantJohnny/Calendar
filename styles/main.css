@@ -2,7 +2,6 @@ main {
     width: 100%;
     height: 100%;
     display: flex;
-
 }
 
 main section {
@@ -11,6 +10,7 @@ main section {
 
 #months-selector {
     width: 20%;
+    box-shadow: 0 0 3px 2px #949494;
 }
 
 #calendar {
@@ -19,6 +19,7 @@ main section {
 
 #events {
     width: 30%;
+    box-shadow: 0 0 3px 1px #949494;
 }
 
 @media screen and (max-width: 720px) {

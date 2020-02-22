@@ -1,4 +1,21 @@
 html, body {
     height: 100%;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.orange-bc {
+    background-color: rgb(211, 137, 72);
+}
+
+.gray-bc {
+    background-color: rgb(75, 77, 88);
+}
+
+.font-orange {
+    color: rgb(211, 137, 72);
+}
+
+.font-gray {
+    color: rgb(75, 77, 88);
 }

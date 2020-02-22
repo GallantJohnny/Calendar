@@ -1,0 +1,33 @@
+#year-selector {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+#year-selector img {
+    height: 40px;
+}
+
+.arrow-container div {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+    margin: auto;
+}
+
+.arrow-container {
+    width: 30%;
+}
+
+#year {
+    width: 40%;
+}
+
+#year p {
+    margin: 5px auto auto auto;
+    text-align: center;
+    font-size: 2em;
+}
