@@ -1,4 +1,4 @@
-appendDayContainers(2020, 2);
+appendDayContainers(96, 2);
 
 function appendDayContainers(year, month){
     const daysContainer = document.getElementById("days-container");
@@ -26,7 +26,7 @@ function createCalendarArray(numberOfDayContainers, year, month){
     const monthLength = new Date(year, month + 1, 0).getDate();  // month: Jan = 1, Feb = 2 ...
     let counter = 1;
 
-    if (firstDay) firstDay = 6; 
+    if (firstDay == -1) firstDay = 6; 
 
     for(let i = 0; i < numberOfDayContainers; i++){
         if (i >= firstDay && counter <= monthLength){
