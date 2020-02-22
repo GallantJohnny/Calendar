@@ -1,4 +1,4 @@
-appendDayContainers(2019, 1);
+appendDayContainers(2020, 2);
 
 function appendDayContainers(year, month){
     const daysContainer = document.getElementById("days-container");
@@ -22,9 +22,11 @@ function createSpan(className, content) {
 
 function createCalendarArray(numberOfDayContainers, year, month){
     const calendarArray = [];
-    const firstDay = new Date(year, month, 1).getDay() - 1;  // 0 = Sunday, 1 = Monday
-    const monthLength = new Date(year, month, 0).getDate();
+    let firstDay = new Date(year, month, 1).getDay() - 1;  // 0 = Sunday, 1 = Monday ...
+    const monthLength = new Date(year, month + 1, 0).getDate();  // month: Jan = 1, Feb = 2 ...
     let counter = 1;
+
+    if (firstDay) firstDay = 6; 
 
     for(let i = 0; i < numberOfDayContainers; i++){
         if (i >= firstDay && counter <= monthLength){

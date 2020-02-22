@@ -4,8 +4,16 @@
 }
 
 #days-header {
+    display: flex;
+    justify-content: space-evenly;
     width: 100%;
     height: 10%;
+}
+
+#days-header h1 {
+    width: 14.2%;
+    height: 35px;
+    text-align: center;
 }
 
 #days-container {
