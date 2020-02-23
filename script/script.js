@@ -1,6 +1,59 @@
+class CalendarEvent {
+    constructor(year, month, day, start, finish){
+        this._year = year;
+        this._month = month;
+        this._day = day;
+        this._start = start;
+        this._finish = finish;
+        this._title = "";
+    }
+
+    get year(){
+        return this._year;
+    }
+
+    get month(){
+        return this._month;
+    }
+
+    get day(){
+        return this._day;
+    }
+
+    get start(){
+        return this._start;
+    }
+
+    get finish(){
+        return this._finish;
+    }
+
+    get title(){
+        return this._title;
+    }
+
+    setTitle(title){
+        this._title = title;
+    } 
+}
+
+const event1 = new CalendarEvent(2020, 1, 22, 8, 9);
+event1.setTitle("Daily standup");
+const event2 = new CalendarEvent(2020, 1, 22, 10, 11);
+event2.setTitle("Meeting with John");
+const event3 = new CalendarEvent(2020, 1, 22, 17, 18);
+event3.setTitle("Take out trash");
+
+let events = [];
+
+events.push(event1);
+events.push(event2);
+events.push(event3);
+
 appendDayContainers(96, 2);
 addListenersToMonths();
 selectCurretnMonth();
+renderEvents(events);
 
 function selectCurretnMonth(){
     const currentMonth = new Date().getMonth();
@@ -77,4 +130,30 @@ function createCalendarArray(numberOfDayContainers, year, month){
     }
 
     return calendarArray;
+}
+
+function createEventElement(event){
+    const container = document.createElement('div');
+    const timeHeader = document.createElement('p');
+    const title = document.createElement('p');
+
+    timeHeader.className = "orange-bc font-gray";
+    timeHeader.textContent = `${event.start} - ${event.finish}`;
+
+    console.log(event.title);
+    title.textContent = event.title;
+
+    container.appendChild(timeHeader);
+    container.appendChild(title);
+
+    console.log(container);
+    return container;
+}
+
+function renderEvents(events){
+    const eventsContainer = document.getElementById('events-container');
+
+    events.forEach(event => {
+        eventsContainer.appendChild(createEventElement(event));
+    });
 }

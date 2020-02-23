@@ -13,6 +13,7 @@
     <link type="text/css" rel="stylesheet" href="styles/year-selector.css">
     <link type="text/css" rel="stylesheet" href="styles/months-list.css">
     <link type="text/css" rel="stylesheet" href="styles/calendar.css">
+    <link type="text/css" rel="stylesheet" href="styles/events.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
@@ -55,9 +56,23 @@
                 <div><h1 class="weekend">Sa</h1></div>
                 <div><h1 class="weekend">Su</h1></div>
             </div>
-            <div id="days-container"></div>
+            <div id="days-container" class="font-gray"></div>
         </section>
-        <section id="events" class="gray-bc"></section>
+        <section id="events" class="gray-bc">
+            <div id="events-header" class="orange-bc">
+                <div>
+                    <p class="font-gray">2020</p>
+                    <p class="font-gray">February 22</p>
+                </div>
+                <h1 class="font-gray">EVENTS</h1>
+            </div>
+            <div id="events-container">
+                <div>
+                    <p class="orange-bc"></p>
+                    <p></p>
+                </div>
+            </div>
+        </section>
     </main>
 </body>
 <script src="./script/script.js"></script>
