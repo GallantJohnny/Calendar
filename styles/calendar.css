@@ -10,10 +10,35 @@
     height: 10%;
 }
 
-#days-header h1 {
+#days-header div {
+    display: flex;
+    justify-content: center;
     width: 14.2%;
     height: 35px;
+}
+
+#days-header h1 {
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
     text-align: center;
+    border-radius: 50%;
+}
+
+#calendar .weekday {
+    background-color: rgb(211, 137, 72);
+    color: rgb(75, 77, 88);
+    box-shadow:
+       -2px -2px 5px hsl(28, 61%, 80%),
+        2px 2px 5px hsl(28, 61%, 30%);
+}
+
+#calendar .weekend {
+    background-color: rgb(75, 77, 88);
+    color: rgb(211, 137, 72);
+    box-shadow:
+        -2px -2px 5px hsl(231, 8%, 62%),
+        2px 2px 5px hsl(231, 8%, 2%);
 }
 
 #days-container {
