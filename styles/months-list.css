@@ -8,6 +8,11 @@
     margin: 10px 50px;
 }
 
+#months-list-container .active {
+    background-color: rgb(211, 137, 72);
+    color: rgb(75, 77, 88);
+}
+
 #months-list-container li {
     border: solid rgb(211, 137, 72);
     border-radius: 5px;
