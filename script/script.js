@@ -6,6 +6,7 @@ class CalendarEvent {
         this._start = start;
         this._finish = finish;
         this._title = "";
+        this._importance = "low";
     }
 
     get year(){
@@ -32,17 +33,28 @@ class CalendarEvent {
         return this._title;
     }
 
+    get importance(){
+        return this._importance;
+    }
+
     setTitle(title){
         this._title = title;
-    } 
+    }
+
+    setImportance(importance){
+        this._importance = importance;
+    }
 }
 
 const event1 = new CalendarEvent(2020, 1, 22, 8, 9);
 event1.setTitle("Daily standup");
+event1.setImportance("high");
 const event2 = new CalendarEvent(2020, 1, 22, 10, 11);
 event2.setTitle("Meeting with John");
+event2.setImportance("low");
 const event3 = new CalendarEvent(2020, 1, 22, 17, 18);
 event3.setTitle("Take out trash");
+event3.setImportance("medium");
 
 let events = [];
 
@@ -133,21 +145,29 @@ function createCalendarArray(numberOfDayContainers, year, month){
 }
 
 function createEventElement(event){
-    const container = document.createElement('div');
-    const timeHeader = document.createElement('p');
+    const outerContainer = document.createElement('div');
+    const innerContainer = document.createElement('div');
+    const time = document.createElement('p');
     const title = document.createElement('p');
+    const importance = document.createElement('span');
 
-    timeHeader.className = "orange-bc font-gray";
-    timeHeader.textContent = `${event.start} - ${event.finish}`;
+    innerContainer.className = "orange-bc font-gray";
 
-    console.log(event.title);
+    time.textContent = `${event.start} - ${event.finish}`;
+
     title.textContent = event.title;
 
-    container.appendChild(timeHeader);
-    container.appendChild(title);
+    console.log(event.importance);
+    importance.className = `importance-indicator ${event.importance}-importance`;
 
-    console.log(container);
-    return container;
+    innerContainer.appendChild(importance);
+    innerContainer.appendChild(time);
+
+    outerContainer.appendChild(innerContainer);
+    outerContainer.appendChild(title);
+
+    console.log(outerContainer);
+    return outerContainer;
 }
 
 function renderEvents(events){

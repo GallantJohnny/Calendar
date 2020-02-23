@@ -33,7 +33,7 @@
     width: 70%;
 }
 
-#events-container div {
+#events-container > div {
     height: 70px;
     width: 100%;
     margin: 30px 0;
@@ -45,7 +45,8 @@
         2px 2px 8px hsl(231, 8%, 2%);
 }
 
-#events-container div p:nth-child(1) {
+#events-container > div > div {
+    display: flex;
     border-radius: 4px;
     height: 25px;
     text-align: right;
@@ -53,7 +54,16 @@
     box-sizing: border-box;
 }
 
-#events-container div p:nth-child(2) {
+#events-container > div > div > p {
+    border-radius: 4px;
+    height: 25px;
+    width: 100%;
+    text-align: right;
+    box-sizing: border-box;
+    color: rgb(75, 77, 88);
+}
+
+#events-container > div > p {
     height: 45px;
     padding: 15px 10px 0 0;
     box-sizing: border-box;
@@ -61,4 +71,29 @@
     font-weight: bold;
     font-size: 1.2em;
     text-align: right;
+}
+
+.importance-indicator {
+    margin-left: 10px;
+    display: block;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 1px rgba(75, 77, 88, 0.486);
+}
+
+.none-importance {
+    display: none;
+}
+
+.low-importance {
+    background-color: #75FF70;
+}
+
+.medium-importance {
+    background-color: #ffea70;
+}
+
+.high-importance {
+    background-color: #FF7070;
 }
