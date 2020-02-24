@@ -9,20 +9,25 @@
 }
 
 #months-list-container .active {
-    background-color: rgb(211, 137, 72);
-    color: rgb(75, 77, 88);
+    transform: scale(1.02);
+    box-shadow: 
+        inset -2px -2px 2px 1px hsl(231, 8%, 52%),
+        inset 2px 2px 2px 1px hsl(231, 8%, 22%);
 }
 
 #months-list-container li {
-    border: solid rgb(211, 137, 72);
-    border-radius: 5px;
+    border-radius: 3px;
     margin-top: 15px;
     padding: 5px;
     cursor: pointer;
-    box-shadow: 0 0 5px 1px rgba(38, 41, 46, 0.74);
+    box-shadow: 
+        -2px -2px 4px 1px hsl(231, 8%, 52%),
+        2px 2px 4px 1px hsl(231, 8%, 22%);
 }
 
 #months-list-container li:hover {
-    background-color: rgb(211, 137, 72);
-    color: rgb(75, 77, 88);
+    transform: scale(1.02);
+    box-shadow: 
+        inset -2px -2px 2px 1px hsl(231, 8%, 52%),
+        inset 2px 2px 2px 1px hsl(231, 8%, 22%);
 }

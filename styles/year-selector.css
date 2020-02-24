@@ -15,9 +15,18 @@
     width: 40px;
     border-radius: 50%;
     box-shadow: 
-        -2px -2px 5px hsl(231, 8%, 62%),
-        2px 2px 5px hsl(231, 8%, 2%);
+        -2px -2px 6px 2px hsl(231, 8%, 54%),
+        2px 2px 6px 2px hsl(231, 8%, 10%);
     margin: auto;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.arrow-container div:hover {
+    transform: scale(1.1);
+    box-shadow: 
+    -2px -2px 8px 1px hsl(231, 8%, 54%),
+    2px 2px 8px 1px hsl(231, 8%, 10%);
 }
 
 .arrow-container {

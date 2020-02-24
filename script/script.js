@@ -64,15 +64,22 @@ events.push(event3);
 
 appendDayContainers(96, 2);
 addListenersToMonths();
-selectCurretnMonth();
+selectCurrentMonth();
 renderEvents(events);
 
-function selectCurretnMonth(){
+function selectCurrentMonth(){
     const currentMonth = new Date().getMonth();
     const ul = document.getElementById('months-list-container').children[0];
     
     console.log(ul.children);
     ul.children[currentMonth].className = "active";
+}
+
+function setCurrentYear(){
+    const currentYear = new Date().getFullYear();
+    const yearContainer = document.getElementById('year').children[0];
+
+    yearContainer.textContent = currentYear;
 }
 
 function addListenersToMonths(){
