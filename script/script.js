@@ -64,6 +64,7 @@ events.push(event3);
 
 appendDayContainers(96, 2);
 addListenersToMonths();
+addListenersToYearBtns();
 selectCurrentMonth();
 renderEvents(events);
 
@@ -80,6 +81,29 @@ function setCurrentYear(){
     const yearContainer = document.getElementById('year').children[0];
 
     yearContainer.textContent = currentYear;
+}
+
+function changeYear(valueChange){
+    const yearContainer = document.getElementById('year').children[0];
+    const ul = document.getElementById('months-list-container').children[0];
+    let currentYear = parseInt(yearContainer.textContent);
+
+    currentYear += valueChange;
+    console.log(currentYear);
+    yearContainer.textContent = currentYear;
+
+    addListenersToMonths();
+    onMonthClicked(currentYear, 0, ul);
+}
+
+function addListenersToYearBtns(){
+    const btns = document.getElementsByClassName('arrow-container');
+    console.log(btns);
+    const leftBtn = btns[0].children[0];
+    const rightBtn = btns[1].children[0];
+
+    leftBtn.addEventListener('click', () => changeYear(-1));
+    rightBtn.addEventListener('click', () => changeYear(1));
 }
 
 function addListenersToMonths(){
