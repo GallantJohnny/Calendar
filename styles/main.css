@@ -11,10 +11,13 @@ main section {
 #months-selector {
     width: 20%;
     box-shadow: 0 0 3px 2px #949494;
+    transition: 0.2s;
 }
 
 #calendar {
     width: 50%;
+    box-sizing: border-box;
+    padding: 40px 35px 35px 35px;
 }
 
 #events {
@@ -22,8 +25,22 @@ main section {
     box-shadow: 0 0 3px 1px #949494;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 850px) {
     main {
         flex-flow: column;
+    }
+
+    #calendar, #events {
+        width: 100%;
+    }
+
+    #months-selector {
+        position: fixed;
+        left: -230px;
+        width: 250px;
+    }
+
+    #months-selector:hover {
+        left: 0px;
     }
 }

@@ -1,13 +1,8 @@
-#calendar {
-    box-sizing: border-box;
-    padding: 40px 35px 35px 35px;
-}
-
 #days-header {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    height: 10%;
+    height: 45px;
 }
 
 #days-header div {
