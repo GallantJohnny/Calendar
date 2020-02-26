@@ -72,7 +72,6 @@ function selectCurrentMonth(){
     const currentMonth = new Date().getMonth();
     const ul = document.getElementById('months-list-container').children[0];
     
-    console.log(ul.children);
     ul.children[currentMonth].className = "active";
 }
 
@@ -89,7 +88,6 @@ function changeYear(valueChange){
     let currentYear = parseInt(yearContainer.textContent);
 
     currentYear += valueChange;
-    console.log(currentYear);
     yearContainer.textContent = currentYear;
 
     addListenersToMonths();
@@ -98,7 +96,6 @@ function changeYear(valueChange){
 
 function addListenersToYearBtns(){
     const btns = document.getElementsByClassName('arrow-container');
-    console.log(btns);
     const leftBtn = btns[0].children[0];
     const rightBtn = btns[1].children[0];
 
@@ -110,8 +107,6 @@ function addListenersToMonths(){
     const ul = document.getElementById('months-list-container').children[0];
     const liMonths =  ul.children;
     const year = document.getElementById('year').firstChild.textContent;
-
-    console.log(ul);
 
     for (let i = 0; i < liMonths.length; i++){
         liMonths[i].addEventListener('click', () => onMonthClicked(year, i, ul));
@@ -188,7 +183,6 @@ function createEventElement(event){
 
     title.textContent = event.title;
 
-    console.log(event.importance);
     importance.className = `importance-indicator ${event.importance}-importance`;
 
     innerContainer.appendChild(importance);
@@ -197,7 +191,6 @@ function createEventElement(event){
     outerContainer.appendChild(innerContainer);
     outerContainer.appendChild(title);
 
-    console.log(outerContainer);
     return outerContainer;
 }
 

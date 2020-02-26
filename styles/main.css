@@ -25,6 +25,15 @@ main section {
     box-shadow: 0 0 3px 1px #949494;
 }
 
+#create-event-btn {
+    position: absolute;
+    border-radius: 50%;
+    right: 15px;
+    bottom: 15px;
+    height: 60px;
+    width: 60px;
+}
+
 @media screen and (max-width: 850px) {
     main {
         flex-flow: column;
