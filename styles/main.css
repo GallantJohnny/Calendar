@@ -21,8 +21,10 @@ main section {
 }
 
 #events {
+    position: relative;
     width: 30%;
     box-shadow: 0 0 3px 1px #949494;
+    overflow-x: hidden;
 }
 
 #create-event-btn {

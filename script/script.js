@@ -201,3 +201,9 @@ function renderEvents(events){
         eventsContainer.appendChild(createEventElement(event));
     });
 }
+
+function eventsSwimRight(){
+    const events = document.getElementById("events").children[0];
+
+    events.className = "swim-right";
+}

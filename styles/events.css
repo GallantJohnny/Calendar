@@ -1,9 +1,17 @@
 #events > div {
     position: absolute;
     height: 100%;
-    width: 30%;
+    width: 100%;
     box-shadow: 0 0 3px 1px #949494;
-    transition: 0.3s;
+    transition: 0.5s;
+}
+
+.swim-static {
+    right: 0%;
+}
+
+.swim-right {
+    right: -90%;
 }
 
 #events-header {
