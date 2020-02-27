@@ -85,10 +85,12 @@ function setCurrentYear() {
 function changeYear(valueChange) {
     const yearContainer = document.getElementById('year').children[0];
     const ul = document.getElementById('months-list-container').children[0];
+    const eventYear = document.getElementById('event-year');
     let currentYear = parseInt(yearContainer.textContent);
 
     currentYear += valueChange;
     yearContainer.textContent = currentYear;
+    eventYear.textContent = currentYear;
 
     addListenersToMonths();
     onMonthClicked(currentYear, 0, ul);
@@ -114,9 +116,16 @@ function addListenersToMonths() {
 }
 
 function onMonthClicked(year, month, ul) {
+    const eventMonth = document.getElementById('event-month');
+    const monthString = new Date(year, month);
+    const options = { month: 'long', day: 'numeric'};
 
     ul.getElementsByClassName('active')[0].className = "";
     ul.children[month].className = "active";
+
+    console.log(month);
+    console.log(options);
+    eventMonth.textContent = new Intl.DateTimeFormat('en-US', options).format(monthString);
 
     removeDayContainers();
     appendDayContainers(year, month);
@@ -206,7 +215,7 @@ function eventsSwimRight() {
     const events = document.getElementById("events").children[0];
     const btn = document.getElementById("create-event-btn");
 
-    if (events.className === "swim-right" ) {
+    if (events.className === "swim-right") {
         events.className = "swim-static";
         btn.style.transform = "rotate(45deg)";
     } else {

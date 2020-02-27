@@ -29,6 +29,7 @@ main section {
 
 #create-event-btn {
     position: absolute;
+    z-index: 75;
     border-radius: 50%;
     right: 25px;
     bottom: 25px;
