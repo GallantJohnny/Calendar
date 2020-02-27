@@ -1,5 +1,5 @@
 class CalendarEvent {
-    constructor(year, month, day, start, finish){
+    constructor(year, month, day, start, finish) {
         this._year = year;
         this._month = month;
         this._day = day;
@@ -9,39 +9,39 @@ class CalendarEvent {
         this._importance = "low";
     }
 
-    get year(){
+    get year() {
         return this._year;
     }
 
-    get month(){
+    get month() {
         return this._month;
     }
 
-    get day(){
+    get day() {
         return this._day;
     }
 
-    get start(){
+    get start() {
         return this._start;
     }
 
-    get finish(){
+    get finish() {
         return this._finish;
     }
 
-    get title(){
+    get title() {
         return this._title;
     }
 
-    get importance(){
+    get importance() {
         return this._importance;
     }
 
-    setTitle(title){
+    setTitle(title) {
         this._title = title;
     }
 
-    setImportance(importance){
+    setImportance(importance) {
         this._importance = importance;
     }
 }
@@ -68,21 +68,21 @@ addListenersToYearBtns();
 selectCurrentMonth();
 renderEvents(events);
 
-function selectCurrentMonth(){
+function selectCurrentMonth() {
     const currentMonth = new Date().getMonth();
     const ul = document.getElementById('months-list-container').children[0];
-    
+
     ul.children[currentMonth].className = "active";
 }
 
-function setCurrentYear(){
+function setCurrentYear() {
     const currentYear = new Date().getFullYear();
     const yearContainer = document.getElementById('year').children[0];
 
     yearContainer.textContent = currentYear;
 }
 
-function changeYear(valueChange){
+function changeYear(valueChange) {
     const yearContainer = document.getElementById('year').children[0];
     const ul = document.getElementById('months-list-container').children[0];
     let currentYear = parseInt(yearContainer.textContent);
@@ -94,7 +94,7 @@ function changeYear(valueChange){
     onMonthClicked(currentYear, 0, ul);
 }
 
-function addListenersToYearBtns(){
+function addListenersToYearBtns() {
     const btns = document.getElementsByClassName('arrow-container');
     const leftBtn = btns[0].children[0];
     const rightBtn = btns[1].children[0];
@@ -103,40 +103,40 @@ function addListenersToYearBtns(){
     rightBtn.addEventListener('click', () => changeYear(1));
 }
 
-function addListenersToMonths(){
+function addListenersToMonths() {
     const ul = document.getElementById('months-list-container').children[0];
-    const liMonths =  ul.children;
+    const liMonths = ul.children;
     const year = document.getElementById('year').firstChild.textContent;
 
-    for (let i = 0; i < liMonths.length; i++){
+    for (let i = 0; i < liMonths.length; i++) {
         liMonths[i].addEventListener('click', () => onMonthClicked(year, i, ul));
     }
 }
 
-function onMonthClicked(year, month, ul){
+function onMonthClicked(year, month, ul) {
 
-    ul.getElementsByClassName('active')[0].className = ""; 
+    ul.getElementsByClassName('active')[0].className = "";
     ul.children[month].className = "active";
 
     removeDayContainers();
     appendDayContainers(year, month);
 }
 
-function appendDayContainers(year, month){
+function appendDayContainers(year, month) {
     const daysContainer = document.getElementById("days-container");
     const numberOfDayContainers = 42;
 
     const calendarArray = createCalendarArray(numberOfDayContainers, year, month);
-    
+
     calendarArray.forEach(element => {
         daysContainer.append(createSpan('day-container', element));
     });
 }
 
-function removeDayContainers(){
-    const dayContainers =  document.getElementById('days-container');
+function removeDayContainers() {
+    const dayContainers = document.getElementById('days-container');
 
-    while (dayContainers.lastChild){
+    while (dayContainers.lastChild) {
         dayContainers.removeChild(dayContainers.lastChild);
     }
 }
@@ -150,16 +150,16 @@ function createSpan(className, content) {
     return span;
 }
 
-function createCalendarArray(numberOfDayContainers, year, month){
+function createCalendarArray(numberOfDayContainers, year, month) {
     const calendarArray = [];
     let firstDay = new Date(year, month, 1).getDay() - 1;  // 0 = Sunday, 1 = Monday ...
     const monthLength = new Date(year, month + 1, 0).getDate();  // month: Jan = 1, Feb = 2 ...
     let counter = 1;
 
-    if (firstDay == -1) firstDay = 6; 
+    if (firstDay == -1) firstDay = 6;
 
-    for(let i = 0; i < numberOfDayContainers; i++){
-        if (i >= firstDay && counter <= monthLength){
+    for (let i = 0; i < numberOfDayContainers; i++) {
+        if (i >= firstDay && counter <= monthLength) {
             calendarArray[i] = counter;
             counter++
         } else {
@@ -170,7 +170,7 @@ function createCalendarArray(numberOfDayContainers, year, month){
     return calendarArray;
 }
 
-function createEventElement(event){
+function createEventElement(event) {
     const outerContainer = document.createElement('div');
     const innerContainer = document.createElement('div');
     const time = document.createElement('p');
@@ -194,7 +194,7 @@ function createEventElement(event){
     return outerContainer;
 }
 
-function renderEvents(events){
+function renderEvents(events) {
     const eventsContainer = document.getElementById('events-container');
 
     events.forEach(event => {
@@ -202,8 +202,15 @@ function renderEvents(events){
     });
 }
 
-function eventsSwimRight(){
+function eventsSwimRight() {
     const events = document.getElementById("events").children[0];
+    const btn = document.getElementById("create-event-btn");
 
-    events.className = "swim-right";
+    if (events.className === "swim-right" ) {
+        events.className = "swim-static";
+        btn.style.transform = "rotate(45deg)";
+    } else {
+        events.className = "swim-right";
+        btn.style.transform = "rotate(0deg)";
+    }
 }

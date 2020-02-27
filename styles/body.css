@@ -4,6 +4,11 @@ html, body {
     font-family: 'Roboto', sans-serif;
 }
 
+button {
+    border: none;
+    background-color: rgb(211, 137, 72);
+}
+
 .orange-bc {
     background-color: rgb(211, 137, 72);
 }

@@ -2,8 +2,8 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    box-shadow: 0 0 3px 1px #949494;
     transition: 0.5s;
+    box-shadow: 0 0 2px 3px rgba(39, 40, 46, 0.658);
 }
 
 .swim-static {
