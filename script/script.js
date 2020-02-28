@@ -228,3 +228,14 @@ function eventsSwimRight() {
         cancelBtn.style.backgroundColor = "rgb(231, 114, 114)";
     }
 }
+
+function changeImportanceSelection(clickedElement) {
+    const importance = document.getElementById('importance-picker').children[1];
+    console.log(importance);
+
+    importance.children[0].className = "importance-indicator low-importance"
+    importance.children[1].className = "importance-indicator medium-importance"
+    importance.children[2].className = "importance-indicator high-importance"
+
+    clickedElement.className = `${clickedElement.className} selected-importance`;
+}
