@@ -213,16 +213,18 @@ function renderEvents(events) {
 
 function eventsSwimRight() {
     const events = document.getElementById("events").children[0];
-    const btn = document.getElementById("create-event-btn");
+    const cancelBtn = document.getElementById("create-event-btn");
     const acceptBtn = document.getElementById("accept-changes-btn");
 
     if (events.className === "swim-right") {
         events.className = "swim-static";
         acceptBtn.className = "events-creation-buttons"; 
-        btn.style.transform = "rotate(45deg)";
+        cancelBtn.style.transform = "";
+        cancelBtn.style.backgroundColor = "";
     } else {
         events.className = "swim-right";
         acceptBtn.className = "events-creation-buttons accept-btn-visable";
-        btn.style.transform = "rotate(0deg)";
+        cancelBtn.style.transform = "rotate(0deg)";
+        cancelBtn.style.backgroundColor = "rgb(231, 114, 114)";
     }
 }
