@@ -1,0 +1,41 @@
+#buttons-container {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    right: 25px;
+    bottom: 25px;
+}
+
+.events-creation-buttons {
+    z-index: 75;
+    border-radius: 50%;
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    right: 0px;
+    box-shadow:
+        -2px -2px 8px hsl(231, 8%, 62%),
+        2px 2px 8px hsl(231, 8%, 2%);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.accept-btn-visable {
+    right: 100px;
+    background-color: rgb(142, 228, 108);
+}
+
+#create-event-btn {
+    transform: rotate(45deg);
+}
+
+.events-creation-buttons:hover {
+    box-shadow:
+        -2px -2px 16px hsl(231, 8%, 62%),
+        2px 2px 16px hsl(231, 8%, 2%);
+}
+
+#buttons-container svg{
+    height: 35px;
+    width: 35px;
+}
