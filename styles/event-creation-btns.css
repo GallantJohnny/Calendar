@@ -2,7 +2,7 @@
     position: absolute;
     height: 60px;
     width: 60px;
-    right: 25px;
+    right: 60px;
     bottom: 25px;
 }
 
@@ -13,6 +13,7 @@
     height: 60px;
     width: 60px;
     right: 0px;
+    padding: 12px;
     box-shadow:
         -2px -2px 8px hsl(231, 8%, 62%),
         2px 2px 8px hsl(231, 8%, 2%);
