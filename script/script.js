@@ -60,13 +60,14 @@ events.push(event1);
 events.push(event2);
 events.push(event3);
 
-setYear()
+setYear();
+setDateOnEvents();
 appendDayContainers(new Date().getFullYear(), new Date().getMonth());
 addListenersToMonths();
 addListenersToYearBtns();
 selectCurrentMonth();
 renderEvents(events);
-setDateOnEvents();
+
 
 function setDateOnEvents(date = new Date()) {
     const yearMonthContainer = document.getElementById('events-header').children[0];
@@ -127,8 +128,6 @@ function addListenersToMonths() {
     const liMonths = ul.children;
     const year = document.getElementById('year').children[0].textContent;
 
-    console.log(year);
-
     for (let i = 0; i < liMonths.length; i++) {
         liMonths[i].addEventListener('click', () => onMonthClicked(year, i, ul));
     }
@@ -143,8 +142,6 @@ function onMonthClicked(year, month, ul) {
     ul.children[month].className = "active";
 
     eventMonth.textContent = new Intl.DateTimeFormat('en-US', options).format(monthString);
-
-    console.log(year, month);
 
     removeDayContainers();
     appendDayContainers(year, month);
@@ -185,9 +182,8 @@ function createDayElement(className, content, i) {
     const div = document.createElement('div');
     const spanNumber = document.createElement('span');
     const spanEvents = document.createElement('span');
-    const yearMonthContainer = document.getElementById('events-header').children[0];
-    const year = yearMonthContainer.children[0];
-    const month = yearMonthContainer.children[1];
+    const month = document.getElementById('event-month');
+    const regex = /\d+/g;
 
     div.className = className
     div.id = i;
@@ -198,8 +194,7 @@ function createDayElement(className, content, i) {
     if (content !== 'x') {
         div.addEventListener('click', function () {
             deselectDays();
-            console.log(year.textContent, 1, content);
-            setDateOnEvents(new Date(2020, 0, 1));
+            month.textContent = month.textContent.replace(regex, content);
             document.getElementById(i).className = `${className} day-selected`;
         });
     }
