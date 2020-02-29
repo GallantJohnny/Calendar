@@ -43,10 +43,33 @@
     height: 90%;
 }
 
-#days-container .day-container {
+#days-container div {
     display: block;
     text-align: center;
     box-sizing: border-box;
+    border-radius: 5px;
     width: 14.2%;
-    padding: 5px;
+    padding: 8% 5px 5px 5px;
+    font-size: 1.1em;
+}
+
+.day-container {
+    cursor: pointer;
+}
+
+.day-container:hover {
+    background-color: rgba(211, 137, 72, 0.507);
+}
+
+.day-selected {
+    background-color: rgb(211, 137, 72);
+}
+
+.day-selected:hover {
+    background-color: rgb(211, 137, 72);
+}
+
+.out-of-month-day-container {
+    cursor: default;
+    color:  rgba(92, 94, 96, 0.678);
 }
