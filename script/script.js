@@ -15,7 +15,7 @@ class CalendarEvent {
     }
 
     get day() {
-        return this._start.getDay();
+        return this._start.getDate();
     }
 
     get time() {
@@ -53,12 +53,16 @@ event2.setImportance("low");
 const event3 = new CalendarEvent(2020, 1, 22);
 event3.setTitle("Take out trash");
 event3.setImportance("medium");
+const event4 = new CalendarEvent(2020, 2, 22);
+event3.setTitle("Mown lawn");
+event3.setImportance("medium");
 
 let events = [];
 
 events.push(event1);
 events.push(event2);
 events.push(event3);
+events.push(event4);
 
 setYear();
 setDateOnEvents();
@@ -206,7 +210,14 @@ function createDayElement(className, content, i) {
 }
 
 function createCalendarArray(numberOfDayContainers, year, month) {
-    const calendarArray = [];
+    const calendarArray = [
+        {
+            day: 0,
+            low: false,
+            medium: false,
+            high: false,
+        }
+    ];
     let firstDay = new Date(year, month, 1).getDay() - 1;  // 0 = Sunday, 1 = Monday ...
     const monthLength = new Date(year, month + 1, 0).getDate();  // month: Jan = 1, Feb = 2 ...
     let counter = 1;
@@ -290,4 +301,45 @@ function deselectDays() {
     const selectedDay = deselectFrom.getElementsByClassName('day-selected');
 
     selectedDay[0].className = 'day-container';
+}
+
+function findEventsInMonth(month){
+    let eventsInMonth = [];
+    
+    events.forEach(event => {
+        console.log("event: ");
+        console.log(event);
+        if(event.month === month) eventsInMonth.push(event);
+    });
+
+    console.log("Events in " + month + ": ");
+    console.log(eventsInMonth);
+
+    return eventsInMonth;
+}
+
+function returnEventsOnDay(eventsInMonth, day){
+    let eventsOnDay = [];
+
+    eventsInMonth.forEach(event => {
+        console.log("event: ");
+        console.log(event.day);
+        if(event.day === day) eventsOnDay.push(event);
+    });
+
+    console.log("Events in " + day + ": ");
+    console.log(eventsOnDay);
+
+    return eventsOnDay;
+}
+
+function isThereImportanceEvent(events, importance){
+
+    events.forEach(event => {
+        if(event.importance === importance){
+            return true;
+        }
+    });
+
+    return false;
 }
