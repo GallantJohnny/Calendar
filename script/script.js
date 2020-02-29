@@ -60,13 +60,13 @@ events.push(event1);
 events.push(event2);
 events.push(event3);
 
+setYear()
 appendDayContainers(new Date().getFullYear(), new Date().getMonth());
 addListenersToMonths();
 addListenersToYearBtns();
 selectCurrentMonth();
 renderEvents(events);
 setDateOnEvents();
-setYear()
 
 function setDateOnEvents(date = new Date()) {
     const yearMonthContainer = document.getElementById('events-header').children[0];
@@ -126,6 +126,8 @@ function addListenersToMonths() {
     const ul = document.getElementById('months-list-container').children[0];
     const liMonths = ul.children;
     const year = document.getElementById('year').children[0].textContent;
+
+    console.log(year);
 
     for (let i = 0; i < liMonths.length; i++) {
         liMonths[i].addEventListener('click', () => onMonthClicked(year, i, ul));
