@@ -64,27 +64,41 @@ events.push(event2);
 events.push(event3);
 events.push(event4);
 
+const monthString = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+]
+
 setYear();
 setDateOnEvents();
 appendDayContainers(new Date().getFullYear(), new Date().getMonth());
 addListenersToMonths();
 addListenersToYearBtns();
 selectCurrentMonth();
-renderEvents(events);
 
 
 function setDateOnEvents(date = new Date()) {
     const yearMonthContainer = document.getElementById('events-header').children[0];
     const year = yearMonthContainer.children[0];
     const month = yearMonthContainer.children[1];
-    const optionY = { year: 'numeric'};
+    const optionY = { year: 'numeric' };
     const optionM = { month: 'long', day: 'numeric' };
 
     year.textContent = new Intl.DateTimeFormat('en-US', optionY).format(date);
     month.textContent = new Intl.DateTimeFormat('en-US', optionM).format(date);
 }
 
-function setYear(){
+function setYear() {
     const year = document.getElementById('year').children[0];
 
     year.textContent = new Date().getFullYear();
@@ -141,6 +155,7 @@ function onMonthClicked(year, month, ul) {
     const eventMonth = document.getElementById('event-month');
     const monthString = new Date(year, month);
     const options = { month: 'long', day: 'numeric' };
+    const eventsToRender = returnEventsOnDay(findEventsInMonth(month), 1);
 
     ul.getElementsByClassName('active')[0].className = "";
     ul.children[month].className = "active";
@@ -149,6 +164,7 @@ function onMonthClicked(year, month, ul) {
 
     removeDayContainers();
     appendDayContainers(year, month);
+    renderEvents(eventsToRender);
 }
 
 function appendDayContainers(year, month) {
@@ -161,7 +177,7 @@ function appendDayContainers(year, month) {
     calendarArray.forEach(element => {
         let className = "";
 
-        if (element === 'x'){
+        if (element === 'x') {
             className = 'out-of-month-day-container';
         } else if (element === 1) {
             className = 'day-container day-selected';
@@ -198,6 +214,8 @@ function createDayElement(className, content, i) {
     if (content !== 'x') {
         div.addEventListener('click', function () {
             deselectDays();
+            console.log("days: " + content);
+            renderEventsOnDaySelect(content);
             month.textContent = month.textContent.replace(regex, content);
             document.getElementById(i).className = `${className} day-selected`;
         });
@@ -207,6 +225,17 @@ function createDayElement(className, content, i) {
     div.appendChild(spanEvents);
 
     return div;
+}
+
+function renderEventsOnDaySelect(day){
+    const month = document.getElementById('event-month');
+    const regex = /\D+/g;
+    const monthInteger = monthString.indexOf(month.textContent.match(regex)[0].trim());
+    console.log(monthInteger);
+    console.log("Day:" + day);
+    const events = returnEventsOnDay(findEventsInMonth(parseInt(monthInteger)), parseInt(day));
+
+    renderEvents(events);
 }
 
 function createCalendarArray(numberOfDayContainers, year, month) {
@@ -263,9 +292,19 @@ function createEventElement(event) {
 function renderEvents(events) {
     const eventsContainer = document.getElementById('events-container');
 
+    removeEvents();
+
     events.forEach(event => {
         eventsContainer.appendChild(createEventElement(event));
     });
+}
+
+function removeEvents() {
+    const eventsContainer = document.getElementById('events-container');
+
+    while (eventsContainer.lastChild) {
+        eventsContainer.lastChild.remove();
+    }
 }
 
 function eventsSwimRight() {
@@ -303,13 +342,13 @@ function deselectDays() {
     selectedDay[0].className = 'day-container';
 }
 
-function findEventsInMonth(month){
+function findEventsInMonth(month) {
     let eventsInMonth = [];
-    
+
     events.forEach(event => {
         console.log("event: ");
         console.log(event);
-        if(event.month === month) eventsInMonth.push(event);
+        if (event.month === month) eventsInMonth.push(event);
     });
 
     console.log("Events in " + month + ": ");
@@ -318,13 +357,13 @@ function findEventsInMonth(month){
     return eventsInMonth;
 }
 
-function returnEventsOnDay(eventsInMonth, day){
+function returnEventsOnDay(eventsInMonth, day) {
     let eventsOnDay = [];
 
     eventsInMonth.forEach(event => {
         console.log("event: ");
         console.log(event.day);
-        if(event.day === day) eventsOnDay.push(event);
+        if (event.day === day) eventsOnDay.push(event);
     });
 
     console.log("Events in " + day + ": ");
@@ -333,13 +372,14 @@ function returnEventsOnDay(eventsInMonth, day){
     return eventsOnDay;
 }
 
-function isThereImportanceEvent(events, importance){
+function isThereImportanceEvent(events, importance) {
 
     events.forEach(event => {
-        if(event.importance === importance){
+        if (event.importance === importance) {
             return true;
         }
     });
 
     return false;
 }
+
