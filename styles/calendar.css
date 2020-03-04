@@ -73,3 +73,19 @@
     cursor: default;
     color:  rgba(92, 94, 96, 0.678);
 }
+
+.day-number {
+    display: inline-block;
+}
+
+.day-events {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.day-events-indicator {
+    height: 2px;
+    width: 2px;
+}

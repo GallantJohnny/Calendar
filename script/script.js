@@ -53,9 +53,9 @@ event2.setImportance("low");
 const event3 = new CalendarEvent(2020, 1, 22);
 event3.setTitle("Take out trash");
 event3.setImportance("medium");
-const event4 = new CalendarEvent(2020, 2, 22);
-event3.setTitle("Mown lawn");
-event3.setImportance("medium");
+const event4 = new CalendarEvent(2020, 2, 15);
+event4.setTitle("Mown lawn");
+event4.setImportance("medium");
 
 let events = [];
 
@@ -63,6 +63,8 @@ events.push(event1);
 events.push(event2);
 events.push(event3);
 events.push(event4);
+console.log(event4);
+console.log(events);
 
 const monthString = [
     "January",
@@ -214,7 +216,6 @@ function createDayElement(className, content, i) {
     if (content !== 'x') {
         div.addEventListener('click', function () {
             deselectDays();
-            console.log("days: " + content);
             renderEventsOnDaySelect(content);
             month.textContent = month.textContent.replace(regex, content);
             document.getElementById(i).className = `${className} day-selected`;
@@ -231,8 +232,6 @@ function renderEventsOnDaySelect(day){
     const month = document.getElementById('event-month');
     const regex = /\D+/g;
     const monthInteger = monthString.indexOf(month.textContent.match(regex)[0].trim());
-    console.log(monthInteger);
-    console.log("Day:" + day);
     const events = returnEventsOnDay(findEventsInMonth(parseInt(monthInteger)), parseInt(day));
 
     renderEvents(events);
@@ -346,12 +345,10 @@ function findEventsInMonth(month) {
     let eventsInMonth = [];
 
     events.forEach(event => {
-        console.log("event: ");
-        console.log(event);
         if (event.month === month) eventsInMonth.push(event);
     });
 
-    console.log("Events in " + month + ": ");
+    console.log("Events at month " + month + ": ");
     console.log(eventsInMonth);
 
     return eventsInMonth;
@@ -361,12 +358,10 @@ function returnEventsOnDay(eventsInMonth, day) {
     let eventsOnDay = [];
 
     eventsInMonth.forEach(event => {
-        console.log("event: ");
-        console.log(event.day);
         if (event.day === day) eventsOnDay.push(event);
     });
 
-    console.log("Events in " + day + ": ");
+    console.log("Events at day " + day + ": ");
     console.log(eventsOnDay);
 
     return eventsOnDay;
