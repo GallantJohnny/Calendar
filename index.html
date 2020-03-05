@@ -89,8 +89,8 @@
             </div>
             <div id="event-creator">
                 <form>
-                    <input type="text" placeholder="Title">
-                    <input type="text" placeholder="Short descreption">
+                    <input id="event-title" type="text" placeholder="Title">
+                    <input id="event-desc" type="text" placeholder="Short descreption">
                     <div id="date-picker-container">
                     </div>
                     <div id="importance-picker">
@@ -108,7 +108,7 @@
             </div>
         </section>
         <section id="buttons-container">
-            <button class="events-creation-buttons" id="accept-changes-btn" onclick="">
+            <button class="events-creation-buttons" id="accept-changes-btn" onclick="addEventClicked()">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="69.002" height="65.002" viewBox="0 0 69.002 65.002">
                         <g transform="translate(-673.587 -612.517)">

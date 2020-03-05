@@ -401,3 +401,38 @@ function isThereImportanceEvent(month, day ,importance) {
     return isThereEvent;
 }
 
+function addEventClicked(){
+    const eventTitle = document.getElementById("event-title");
+    const eventDesc = document.getElementById("event-desc");
+    const titleVal = eventTitle.value;
+    const descVal = eventDesc.value;
+    const year = document.getElementById('event-year').textContent;
+    const monthDay = document.getElementById('event-month').textContent;
+    const regMonth = /\d+/g;
+    const regDay = /\D+/g;
+    const month = monthDay.match(regMonth)[0].trim();
+    const day = monthDay.match(regDay)[0];
+    const event = new CalendarEvent(year, month, day);
+    const importance = returnSelectedPrioity();
+
+    event.setTitle(titleVal);
+    event.setImportance(importance);
+
+    console.log(event);
+}
+
+function returnSelectedPrioity(){
+    const importanceContainer = document.getElementById('importance-picker').children[1].children;
+    let importance = ['low', 'medium', 'high'];
+    const regex = /selected-importance/;
+
+    console.log(importanceContainer);
+    for(let i = 0; i < importanceContainer.length; i++){
+        console.log(importanceContainer[i]);
+        if(regex.test(importanceContainer[i].className)){
+            selected = importanceContainer[i];
+            console.log(importance[i]);
+            return importance[i];
+        }
+    }
+}
