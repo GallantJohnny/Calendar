@@ -43,7 +43,7 @@
     height: 90%;
 }
 
-#days-container div {
+#days-container > div {
     display: block;
     text-align: center;
     box-sizing: border-box;
@@ -85,7 +85,18 @@
     width: 100%;
 }
 
+.day-events-indicator-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .day-events-indicator {
-    height: 2px;
-    width: 2px;
+    display: block;
+    background-color: #4b4d58;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 2px rgba(92, 94, 96, 0.452);
+    margin: 5px;
 }

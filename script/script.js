@@ -204,31 +204,47 @@ function createDayElement(className, content, i) {
     const div = document.createElement('div');
     const spanNumber = document.createElement('span');
     const spanEvents = document.createElement('span');
+    const eventsIndicator = document.createElement('div');
+    const eventLow = document.createElement('span');
+    const eventMedium = document.createElement('span');
+    const eventHigh = document.createElement('span');
     const month = document.getElementById('event-month');
-    const regex = /\d+/g;
+    const regex1 = /\d+/g;
+    const regex2 = /\D+/g;
+    const monthInteger = monthString.indexOf(month.textContent.match(regex2)[0].trim());
 
-    div.className = className
+    div.className = className;
     div.id = i;
     spanNumber.className = "day-number";
     spanEvents.className = "day-events";
     spanNumber.textContent = content;
 
+    eventsIndicator.className = "day-events-indicator-container";
+    eventLow.className = "day-events-indicator low-importance";
+    eventMedium.className = "day-events-indicator medium-importance";
+    eventHigh.className = "day-events-indicator high-importance";
+
+    if(isThereImportanceEvent(monthInteger, content, "low")) eventsIndicator.appendChild(eventLow);
+    if(isThereImportanceEvent(monthInteger, content, "medium")) eventsIndicator.appendChild(eventMedium);
+    if(isThereImportanceEvent(monthInteger, content, "high")) eventsIndicator.appendChild(eventHigh);
+
     if (content !== 'x') {
         div.addEventListener('click', function () {
             deselectDays();
             renderEventsOnDaySelect(content);
-            month.textContent = month.textContent.replace(regex, content);
+            month.textContent = month.textContent.replace(regex1, content);
             document.getElementById(i).className = `${className} day-selected`;
         });
     }
 
+    spanEvents.appendChild(eventsIndicator);
     div.appendChild(spanNumber);
     div.appendChild(spanEvents);
 
     return div;
 }
 
-function renderEventsOnDaySelect(day){
+function renderEventsOnDaySelect(day) {
     const month = document.getElementById('event-month');
     const regex = /\D+/g;
     const monthInteger = monthString.indexOf(month.textContent.match(regex)[0].trim());
@@ -348,8 +364,8 @@ function findEventsInMonth(month) {
         if (event.month === month) eventsInMonth.push(event);
     });
 
-    console.log("Events at month " + month + ": ");
-    console.log(eventsInMonth);
+    //console.log("Events at month " + month + ": ");
+    //console.log(eventsInMonth);
 
     return eventsInMonth;
 }
@@ -361,20 +377,27 @@ function returnEventsOnDay(eventsInMonth, day) {
         if (event.day === day) eventsOnDay.push(event);
     });
 
-    console.log("Events at day " + day + ": ");
-    console.log(eventsOnDay);
+    //console.log("Events at day " + day + ": ");
+    //console.log(eventsOnDay);
 
     return eventsOnDay;
 }
 
-function isThereImportanceEvent(events, importance) {
+function isThereImportanceEvent(month, day ,importance) {
+    const eventsOnDay = returnEventsOnDay(findEventsInMonth(month), day);
+    let isThereEvent = false;
+    console.log("[isThereImportanceEvent] eventsOnDay:");
+    console.log(eventsOnDay);
 
-    events.forEach(event => {
+    console.log("For " + importance + " :")
+
+    eventsOnDay.forEach(event => {
         if (event.importance === importance) {
-            return true;
+            console.log("return true");
+            isThereEvent = true;
         }
     });
-
-    return false;
+    console.log("return flase");
+    return isThereEvent;
 }
 
