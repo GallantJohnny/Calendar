@@ -63,7 +63,6 @@ events.push(event1);
 events.push(event2);
 events.push(event3);
 events.push(event4);
-console.log(event4);
 console.log(events);
 
 const monthString = [
@@ -164,6 +163,7 @@ function onMonthClicked(year, month, ul) {
 
     eventMonth.textContent = new Intl.DateTimeFormat('en-US', options).format(monthString);
 
+    findSlectedDay();
     removeDayContainers();
     appendDayContainers(year, month);
     renderEvents(eventsToRender);
@@ -175,7 +175,6 @@ function appendDayContainers(year, month) {
     let i = 0;
 
     const calendarArray = createCalendarArray(numberOfDayContainers, year, month);
-
     calendarArray.forEach(element => {
         let className = "";
 
@@ -190,6 +189,18 @@ function appendDayContainers(year, month) {
         daysContainer.append(createDayElement(className, element, i));
         i++;
     });
+}
+
+function findSlectedDay(){
+    const daysContainer = document.getElementById("days-container");
+    const children = daysContainer.children;
+    const regDaySelected = /day-selected/;
+
+    for(let i = 0; i < children.length; i++){
+        if(regDaySelected.test(children[i].className)) console.log(children[i]);
+    }
+    console.log(children);
+    
 }
 
 function removeDayContainers() {
@@ -386,10 +397,10 @@ function returnEventsOnDay(eventsInMonth, day) {
 function isThereImportanceEvent(month, day ,importance) {
     const eventsOnDay = returnEventsOnDay(findEventsInMonth(month), day);
     let isThereEvent = false;
-    console.log("[isThereImportanceEvent] eventsOnDay:");
-    console.log(eventsOnDay);
+    //console.log("[isThereImportanceEvent] eventsOnDay:");
+    //console.log(eventsOnDay);
 
-    console.log("For " + importance + " :")
+    //console.log("For " + importance + " :")
 
     eventsOnDay.forEach(event => {
         if (event.importance === importance) {
@@ -397,7 +408,7 @@ function isThereImportanceEvent(month, day ,importance) {
             isThereEvent = true;
         }
     });
-    console.log("return flase");
+    //console.log("return flase");
     return isThereEvent;
 }
 
@@ -408,17 +419,23 @@ function addEventClicked(){
     const descVal = eventDesc.value;
     const year = document.getElementById('event-year').textContent;
     const monthDay = document.getElementById('event-month').textContent;
-    const regMonth = /\d+/g;
-    const regDay = /\D+/g;
+    const regDay = /\d+/g;
+    const regMonth = /\D+/g;
     const month = monthDay.match(regMonth)[0].trim();
     const day = monthDay.match(regDay)[0];
-    const event = new CalendarEvent(year, month, day);
     const importance = returnSelectedPrioity();
-
+    
+    //console.log(monthString.indexOf(month), day);
+    const event = new CalendarEvent(year, monthString.indexOf(month), day);
+    
     event.setTitle(titleVal);
     event.setImportance(importance);
+    events.push(event);
 
-    console.log(event);
+    removeDayContainers();
+    appendDayContainers(year, monthString.indexOf(month));
+
+    //console.log(event);
 }
 
 function returnSelectedPrioity(){
@@ -426,12 +443,12 @@ function returnSelectedPrioity(){
     let importance = ['low', 'medium', 'high'];
     const regex = /selected-importance/;
 
-    console.log(importanceContainer);
+    //console.log(importanceContainer);
     for(let i = 0; i < importanceContainer.length; i++){
-        console.log(importanceContainer[i]);
+        //console.log(importanceContainer[i]);
         if(regex.test(importanceContainer[i].className)){
             selected = importanceContainer[i];
-            console.log(importance[i]);
+            //console.log(importance[i]);
             return importance[i];
         }
     }
