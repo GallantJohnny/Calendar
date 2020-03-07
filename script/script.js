@@ -338,12 +338,16 @@ function eventsSwimRight() {
     const events = document.getElementById("events").children[0];
     const cancelBtn = document.getElementById("create-event-btn");
     const acceptBtn = document.getElementById("accept-changes-btn");
+    const eventTitle = document.getElementById("event-title");
+    const eventDesc = document.getElementById("event-desc");
 
     if (events.className === "swim-right") {
         events.className = "swim-static";
         acceptBtn.className = "events-creation-buttons";
         cancelBtn.style.transform = "";
         cancelBtn.style.backgroundColor = "";
+        eventTitle.className = "";
+        eventDesc.className = "";
     } else {
         events.className = "swim-right";
         acceptBtn.className = "events-creation-buttons accept-btn-visable";
@@ -436,8 +440,10 @@ function addEventClicked() {
         removeDayContainers();
         appendDayContainers(year, monthString.indexOf(month), day);
         clearEventForm();
+        renderEventsOnDaySelect(day);
     } else {
-
+        eventTitle.className = "input-error";
+        eventDesc.className = "input-error";
     }
 
     //console.log(event);

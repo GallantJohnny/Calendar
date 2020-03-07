@@ -146,7 +146,7 @@
     text-align: center;
 }
 
-#event-creator input {
+form input {
     width: 75%;
     height: 30px;
     background-color: rgba(75, 77, 88, 0.486);
@@ -158,6 +158,10 @@
     color: rgb(211, 137, 72);
     border-bottom: solid 4px rgb(211, 137, 72);
     box-shadow: none;
+}
+
+.input-error {
+    background-color: rgba(150, 63, 63, 0.795);
 }
 
 .importance-indicator {
