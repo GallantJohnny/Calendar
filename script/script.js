@@ -82,7 +82,7 @@ const monthString = [
 
 setYear();
 setDateOnEvents();
-appendDayContainers(new Date().getFullYear(), new Date().getMonth());
+appendDayContainers(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
 addListenersToMonths();
 addListenersToYearBtns();
 selectCurrentMonth();
@@ -156,20 +156,20 @@ function onMonthClicked(year, month, ul) {
     const eventMonth = document.getElementById('event-month');
     const monthString = new Date(year, month);
     const options = { month: 'long', day: 'numeric' };
-    const eventsToRender = returnEventsOnDay(findEventsInMonth(month), 1);
+    const selectedDay = returnSlectedDay();
+    const eventsToRender = returnEventsOnDay(findEventsInMonth(month), selectedDay);
 
     ul.getElementsByClassName('active')[0].className = "";
     ul.children[month].className = "active";
 
     eventMonth.textContent = new Intl.DateTimeFormat('en-US', options).format(monthString);
 
-    findSlectedDay();
     removeDayContainers();
-    appendDayContainers(year, month);
+    appendDayContainers(year, month, selectedDay);
     renderEvents(eventsToRender);
 }
 
-function appendDayContainers(year, month) {
+function appendDayContainers(year, month, selectedDay) {
     const daysContainer = document.getElementById("days-container");
     const numberOfDayContainers = 42;
     let i = 0;
@@ -180,7 +180,7 @@ function appendDayContainers(year, month) {
 
         if (element === 'x') {
             className = 'out-of-month-day-container';
-        } else if (element === 1) {
+        } else if (element === parseInt(selectedDay)) {
             className = 'day-container day-selected';
         } else {
             className = 'day-container';
@@ -191,16 +191,17 @@ function appendDayContainers(year, month) {
     });
 }
 
-function findSlectedDay(){
+function returnSlectedDay() {
     const daysContainer = document.getElementById("days-container");
     const children = daysContainer.children;
     const regDaySelected = /day-selected/;
 
-    for(let i = 0; i < children.length; i++){
-        if(regDaySelected.test(children[i].className)) console.log(children[i]);
+    for (let i = 0; i < children.length; i++) {
+        if (regDaySelected.test(children[i].className)) {
+            console.log(children[i].children[0].textContent);
+            return children[i].children[0].textContent;
+        }
     }
-    console.log(children);
-    
 }
 
 function removeDayContainers() {
@@ -235,9 +236,9 @@ function createDayElement(className, content, i) {
     eventMedium.className = "day-events-indicator medium-importance";
     eventHigh.className = "day-events-indicator high-importance";
 
-    if(isThereImportanceEvent(monthInteger, content, "low")) eventsIndicator.appendChild(eventLow);
-    if(isThereImportanceEvent(monthInteger, content, "medium")) eventsIndicator.appendChild(eventMedium);
-    if(isThereImportanceEvent(monthInteger, content, "high")) eventsIndicator.appendChild(eventHigh);
+    if (isThereImportanceEvent(monthInteger, content, "low")) eventsIndicator.appendChild(eventLow);
+    if (isThereImportanceEvent(monthInteger, content, "medium")) eventsIndicator.appendChild(eventMedium);
+    if (isThereImportanceEvent(monthInteger, content, "high")) eventsIndicator.appendChild(eventHigh);
 
     if (content !== 'x') {
         div.addEventListener('click', function () {
@@ -394,7 +395,7 @@ function returnEventsOnDay(eventsInMonth, day) {
     return eventsOnDay;
 }
 
-function isThereImportanceEvent(month, day ,importance) {
+function isThereImportanceEvent(month, day, importance) {
     const eventsOnDay = returnEventsOnDay(findEventsInMonth(month), day);
     let isThereEvent = false;
     //console.log("[isThereImportanceEvent] eventsOnDay:");
@@ -412,7 +413,7 @@ function isThereImportanceEvent(month, day ,importance) {
     return isThereEvent;
 }
 
-function addEventClicked(){
+function addEventClicked() {
     const eventTitle = document.getElementById("event-title");
     const eventDesc = document.getElementById("event-desc");
     const titleVal = eventTitle.value;
@@ -424,29 +425,43 @@ function addEventClicked(){
     const month = monthDay.match(regMonth)[0].trim();
     const day = monthDay.match(regDay)[0];
     const importance = returnSelectedPrioity();
-    
+
     //console.log(monthString.indexOf(month), day);
     const event = new CalendarEvent(year, monthString.indexOf(month), day);
-    
-    event.setTitle(titleVal);
-    event.setImportance(importance);
-    events.push(event);
 
-    removeDayContainers();
-    appendDayContainers(year, monthString.indexOf(month));
+    if (titleVal && descVal) {
+        event.setTitle(titleVal);
+        event.setImportance(importance);
+        events.push(event);
+        removeDayContainers();
+        appendDayContainers(year, monthString.indexOf(month), day);
+        clearEventForm();
+    } else {
+
+    }
 
     //console.log(event);
 }
 
-function returnSelectedPrioity(){
+function clearEventForm() {
+    const eventTitle = document.getElementById("event-title");
+    const eventDesc = document.getElementById("event-desc");
+
+    eventTitle.value = "";
+    eventDesc.value = "";
+
+    eventsSwimRight();
+}
+
+function returnSelectedPrioity() {
     const importanceContainer = document.getElementById('importance-picker').children[1].children;
     let importance = ['low', 'medium', 'high'];
     const regex = /selected-importance/;
 
     //console.log(importanceContainer);
-    for(let i = 0; i < importanceContainer.length; i++){
+    for (let i = 0; i < importanceContainer.length; i++) {
         //console.log(importanceContainer[i]);
-        if(regex.test(importanceContainer[i].className)){
+        if (regex.test(importanceContainer[i].className)) {
             selected = importanceContainer[i];
             //console.log(importance[i]);
             return importance[i];
