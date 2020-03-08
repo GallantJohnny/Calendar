@@ -116,5 +116,6 @@
     .day-events-indicator {
         height: 4px;
         width: 4px;
+        margin: 2px;
     }
 }
