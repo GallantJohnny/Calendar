@@ -36,6 +36,10 @@ main section {
         width: 100%;
     }
 
+    #calendar {
+        padding: 5px 5px 5px 20px;
+    }
+
     #months-selector {
         position: fixed;
         left: -230px;
