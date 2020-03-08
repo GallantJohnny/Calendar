@@ -198,4 +198,8 @@ form input {
     #events-container {
         margin-top: 75px;
     }
+
+    #event-creator {
+        padding: 25px 80px 25px 5px;
+    }
 }
