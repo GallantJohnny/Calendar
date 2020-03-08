@@ -10,8 +10,9 @@ main section {
 
 #months-selector {
     width: 20%;
-    box-shadow: 0 0 3px 2px #949494;
+    box-shadow: 0 0px 2px 1px rgba(35, 36, 41, 0.753);
     transition: 0.2s;
+    z-index: 100;
 }
 
 #calendar {
@@ -42,7 +43,7 @@ main section {
 
     #months-selector {
         position: fixed;
-        left: -230px;
+        left: -245px;
         width: 250px;
     }
 
