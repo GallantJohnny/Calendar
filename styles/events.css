@@ -188,3 +188,14 @@ form input {
 .high-importance {
     background-color: #FF7070;
 }
+
+@media screen and (max-width: 850px){
+    #events-header {
+        position: fixed;
+        box-shadow: 0 2px 4px 0 rgba(46, 47, 54, 0.644);
+    }
+
+    #events-container {
+        margin-top: 75px;
+    }
+}
