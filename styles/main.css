@@ -37,6 +37,10 @@ main section {
         width: 100%;
     }
 
+    #events {
+        margin-top: 12px;
+    }
+
     #calendar {
         padding: 5px 5px 5px 20px;
     }
